@@ -4,14 +4,15 @@
     <p class="text-gray-600">
       This is a feature component from the remote application.
     </p>
-    <div class="mt-4 flex items-center">
-      <button 
-        @click="increment"
-        class="px-4 py-2 bg-accent-500 text-white rounded hover:bg-accent-600 transition-colors mr-4"
-      >
-        Increment
-      </button>
-      <span class="text-lg font-semibold">Count: {{ count }}</span>
+    <div class="mt-4 flex items-center gap-4">
+      <component 
+        v-if="buttonComponent"
+        :is="buttonComponent"
+        :label="'Increment'"
+        :type="'secondary'"
+        @click="handleButtonClick"
+      />
+      <span class="text-lg font-semibold">Count: {{ clickCount }}</span>
     </div>
   </div>
 </template>
@@ -21,13 +22,30 @@ export default {
   name: 'FeatureComponent',
   data() {
     return {
-      count: 0
+      count: 0,
+      clickCount: 0,
+      buttonComponent: null
     }
   },
   methods: {
     increment() {
       this.count += 1;
+    },
+    handleButtonClick() {
+      this.clickCount += 1;
+      alert(`Button clicked ${this.clickCount} time(s)!`);
+    },
+    async loadCommonComponents() {
+      try {
+        const buttonModule = await import('common/Button');
+        this.buttonComponent = buttonModule.default;
+      } catch (error) {
+        console.error('Failed to load common components:', error);
+      }
     }
+  },
+  mounted() {
+    this.loadCommonComponents();
   }
 }
 </script>
