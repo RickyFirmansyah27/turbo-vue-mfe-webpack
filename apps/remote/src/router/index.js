@@ -8,17 +8,17 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/remote',
     name: 'Dashboard',
     component: Dashboard
   },
   {
-    path: '/profile',
+    path: '/remote/profile',
     name: 'Profile',
     component: Profile
   },
   {
-    path: '/settings',
+    path: '/remote/settings',
     name: 'Settings',
     component: Settings
   }

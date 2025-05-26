@@ -9,7 +9,7 @@
               <router-link to="/" class="hover:text-primary-200 transition-colors">Home</router-link>
             </li>
             <li>
-              <router-link to="/remote" class="hover:text-primary-200 transition-colors">Remote App</router-link>
+              <router-link to="/remote/profile" class="hover:text-primary-200 transition-colors">Remote Profile</router-link>
             </li>
           </ul>
         </nav>

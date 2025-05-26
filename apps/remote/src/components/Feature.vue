@@ -10,7 +10,7 @@
         :is="buttonComponent"
         :label="'Increment'"
         :type="'secondary'"
-        @click="handleButtonClick"
+        @click="increment"
       />
       <span class="text-lg font-semibold">Count: {{ clickCount }}</span>
     </div>
@@ -22,18 +22,13 @@ export default {
   name: 'FeatureComponent',
   data() {
     return {
-      count: 0,
       clickCount: 0,
       buttonComponent: null
     }
   },
   methods: {
     increment() {
-      this.count += 1;
-    },
-    handleButtonClick() {
       this.clickCount += 1;
-      alert(`Button clicked ${this.clickCount} time(s)!`);
     },
     async loadCommonComponents() {
       try {
