@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import { isRemotePath, Checkpoints } from 'commons/Utils';
 import RemoteAppWrapper from "../views/RemoteAppWrapper.vue";
 
 Vue.use(VueRouter);
@@ -8,29 +9,19 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/homepage"
-  },
-  {
-    path: "/homepage",
     name: "Home",
     component: Home,
   },
   {
-    path: "/remote/component",
-    name: "RemoteApp",
+    path: "/component",
+    name: "Component",
     component: RemoteAppWrapper,
   },
   {
-    path: "/remote/profile",
+    path: Checkpoints.remoteProfile,
     name: "RemoteProfile",
     component: () => import("../adaptor/remote-adaptor.vue"),
   },
-  // Catch all untuk handle sub-routes dari remote apps
-  {
-    path: "/remote/*",
-    name: "RemoteCatchAll",
-    component: () => import("../adaptor/remote-adaptor.vue"),
-  }
 ];
 
 const router = new VueRouter({
@@ -38,14 +29,13 @@ const router = new VueRouter({
   routes,
 });
 
-// Add navigation guards untuk debugging
 router.beforeEach((to, from, next) => {
-  console.log('Navigating from:', from.path, 'to:', to.path);
-  next();
+  if (isRemotePath(from.path) && !isRemotePath(to.path)) {
+    window.location.href = to.fullPath;
+  } else {
+    next();
+  }
 });
 
-router.afterEach((to, from) => {
-  console.log('Navigation completed:', to.path);
-});
 
 export default router;

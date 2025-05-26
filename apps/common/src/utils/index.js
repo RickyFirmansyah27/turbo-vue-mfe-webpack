@@ -68,11 +68,22 @@ export const deepClone = (obj) => {
 
 export const menuPrefix = '/remote';
 
+const remotePrefixes = [
+  '/remote',
+  '/reports',
+  '/transaction',
+  '/management',
+];
+
 export const Checkpoints = {
   login: '/',
   homePage: '/homepage',
   reports: `${menuPrefix}/reports`,
   transaction: `${menuPrefix}/transaction`,
   management: `${menuPrefix}/management`,
-  profile: `${menuPrefix}/profile`,
+  remoteProfile: `${remotePrefixes[0]}/profile`,
 };
+
+export function isRemotePath(path) {
+  return remotePrefixes.some(prefix => path.startsWith(prefix));
+}

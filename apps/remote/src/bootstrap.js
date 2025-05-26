@@ -28,6 +28,12 @@ export const mount = (element, { initialPath, onParentNavigation }) => {
       if (currentPath !== pathname) {
         vueRouter.push(pathname);
       }
+    },
+    unmount: () => {
+      appInstance.$destroy();
+      if (element instanceof Element) {
+        element.innerHTML = '';
+      }
     }
   };
 };

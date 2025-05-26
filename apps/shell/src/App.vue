@@ -6,13 +6,13 @@
         <nav>
           <ul class="flex space-x-4">
             <li>
-              <router-link to="/homepage" class="hover:text-primary-200 transition-colors">Home</router-link>
+              <router-link to="/" class="hover:text-primary-200 transition-colors">Home</router-link>
             </li>
             <li>
-              <router-link to="/remote/component" class="hover:text-primary-200 transition-colors">Remote Component</router-link>
+              <router-link to="/component" class="hover:text-primary-200 transition-colors">Remote Component</router-link>
             </li>
             <li>
-              <router-link :to="checkpoints.profile" class="hover:text-primary-200 transition-colors">Remote
+              <router-link :to="checkpoints.remoteProfile" class="hover:text-primary-200 transition-colors">Remote
                 Profile</router-link>
             </li>
           </ul>

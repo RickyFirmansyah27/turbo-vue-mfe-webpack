@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     navigateToRemote() {
-      this.$router.push('/remote/component');
+      this.$router.push('/component');
     },
     async loadCommonComponents() {
       try {
