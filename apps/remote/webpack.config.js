@@ -56,7 +56,6 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./bootstrap": "./src/bootstrap.js",
-        "./RemoteApp": "./src/App.vue",
         "./Feature": "./src/components/Feature.vue",
       },
       remotes: {

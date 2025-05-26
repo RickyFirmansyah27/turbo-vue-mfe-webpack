@@ -18,23 +18,33 @@ export default {
 
     const { onParentNavigation } = mount(this.$refs.remoteApp, {
       initialPath,
+      router: this.$router,
       reactQueryClient: this.reactQueryClient,
       onParentNavigation: ({ pathname: nextPathname }) => {
         const currentPathname = this.$route.path;
 
+        // Guard against redundant navigation
         if (currentPathname !== nextPathname) {
-          this.$router.push(nextPathname);
+          this.$router.push(nextPathname).catch(err => {
+            // Ignore NavigationDuplicated errors
+            if (err.name !== 'NavigationDuplicated') {
+              throw err;
+            }
+          });
         }
       },
     });
 
     if (onParentNavigation) {
-      this.unlisten = this.$router.afterEach((to) => {
-        onParentNavigation({ pathname: to.path });
+      this.unlisten = this.$router.afterEach((to, from) => {
+        // Avoid calling navigation if we're already at the target
+        if (to.path !== from.path) {
+          onParentNavigation({ pathname: to.path });
+        }
       });
     }
   },
-  beforeUnmount() { // atau beforeDestroy untuk Vue 2
+  beforeUnmount() {
     if (this.unlisten) {
       this.unlisten();
       this.unlisten = null;

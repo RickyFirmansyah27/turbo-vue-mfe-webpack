@@ -60,7 +60,7 @@ module.exports = {
       exposes: {
         './Button': './src/components/Button.vue',
         './Card': './src/components/Card.vue',
-        './utils': './src/utils/index.js'
+        './Utils': './src/utils/index.js'
       },
       shared: {
         vue: {

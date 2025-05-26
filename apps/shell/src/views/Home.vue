@@ -8,7 +8,7 @@
       
       <common-button
         v-if="buttonComponent"
-        :label="'Visit Remote App'"
+        :label="'Check Remote Component'"
         :type="'primary'"
         @click="navigateToRemote"
       />
@@ -44,12 +44,12 @@ export default {
   },
   methods: {
     navigateToRemote() {
-      this.$router.push('/remote');
+      this.$router.push('/remote/component');
     },
     async loadCommonComponents() {
       try {
-        const buttonModule = await import('common/Button');
-        const cardModule = await import('common/Card');
+        const buttonModule = await import('commons/Button');
+        const cardModule = await import('commons/Card');
 
         this.buttonComponent = buttonModule.default;
         this.cardComponent = cardModule.default;

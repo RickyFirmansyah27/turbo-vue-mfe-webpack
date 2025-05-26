@@ -34,7 +34,7 @@ export const mount = (element, { initialPath, onParentNavigation }) => {
 
 // Jika berjalan standalone
 if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.querySelector('#app');
+  const devRoot = document.querySelector('#remote');
   if (devRoot) {
     mount(devRoot, {});
   }

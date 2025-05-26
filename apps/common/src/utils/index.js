@@ -65,3 +65,14 @@ export const debounce = (func, wait = 300) => {
 export const deepClone = (obj) => {
   return JSON.parse(JSON.stringify(obj));
 };
+
+export const menuPrefix = '/remote';
+
+export const Checkpoints = {
+  login: '/',
+  homePage: '/homepage',
+  reports: `${menuPrefix}/reports`,
+  transaction: `${menuPrefix}/transaction`,
+  management: `${menuPrefix}/management`,
+  profile: `${menuPrefix}/profile`,
+};

@@ -6,16 +6,20 @@
         <nav>
           <ul class="flex space-x-4">
             <li>
-              <router-link to="/" class="hover:text-primary-200 transition-colors">Home</router-link>
+              <router-link to="/homepage" class="hover:text-primary-200 transition-colors">Home</router-link>
             </li>
             <li>
-              <router-link to="/remote/profile" class="hover:text-primary-200 transition-colors">Remote Profile</router-link>
+              <router-link to="/remote/component" class="hover:text-primary-200 transition-colors">Remote Component</router-link>
+            </li>
+            <li>
+              <router-link :to="checkpoints.profile" class="hover:text-primary-200 transition-colors">Remote
+                Profile</router-link>
             </li>
           </ul>
         </nav>
       </div>
     </header>
-    
+
     <main class="container mx-auto px-4 py-8">
       <router-view></router-view>
     </main>
@@ -29,8 +33,15 @@
 </template>
 
 <script>
+import { Checkpoints } from 'commons/Utils';
+
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    checkpoints() {
+      return Checkpoints;
+    }
+  }
 }
 </script>
 
