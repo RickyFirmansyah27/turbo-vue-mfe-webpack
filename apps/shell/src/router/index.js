@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import { Checkpoints, isSameRemotePrefix} from 'commons/Utils';
+import { NotFound } from 'commons/Components';
 import RemoteAppWrapper from "../views/RemoteAppWrapper.vue";
 
 Vue.use(VueRouter);
@@ -21,6 +22,11 @@ const routes = [
     path: Checkpoints.remoteProfile,
     name: "RemoteProfile",
     component: () => import("../adaptor/remote-adaptor.vue"),
+  },
+    {
+    path: '/*',
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
