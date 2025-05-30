@@ -66,11 +66,12 @@ export const deepClone = (obj) => {
   return JSON.parse(JSON.stringify(obj));
 };
 
-export const menuPrefix = '/remote';
+export const menuPrefix = '/service';
 
 const remotePrefixes = [
   '/remote',
   '/reports',
+  '/assets',
   '/transaction',
   '/management',
 ];
@@ -79,8 +80,9 @@ export const Checkpoints = {
   login: '/',
   homePage: '/homepage',
   reports: `${menuPrefix}/reports`,
-  transaction: `${menuPrefix}/transaction`,
-  management: `${menuPrefix}/management`,
+  transactions: `${remotePrefixes[3]}/list`,
+  managements: `${menuPrefix}/management`,
+  assets: `${menuPrefix}/list`,
   remoteProfile: `${remotePrefixes[0]}/profile`,
 };
 

@@ -13,8 +13,8 @@ const routes = [
     component: Home,
   },
   {
-    path: "/component",
-    name: "Component",
+    path: Checkpoints.transactions,
+    name: "Transactions",
     component: RemoteAppWrapper,
   },
   {
