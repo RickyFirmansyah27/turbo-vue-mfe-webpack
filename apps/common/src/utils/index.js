@@ -78,14 +78,20 @@ const remotePrefixes = [
 
 export const Checkpoints = {
   login: '/',
-  homePage: '/homepage',
-  reports: `${menuPrefix}/reports`,
+  homepage: '/homepage',
+  reports: `${remotePrefixes[1]}/list`,
   transactions: `${remotePrefixes[3]}/list`,
-  managements: `${menuPrefix}/management`,
+  managements: `${remotePrefixes[4]}/list`,
   assets: `${menuPrefix}/list`,
   remoteProfile: `${remotePrefixes[0]}/profile`,
 };
 
-export function isRemotePath(path) {
-  return remotePrefixes.some(prefix => path.startsWith(prefix));
+export function getPrefix(path) {
+  return remotePrefixes.find(prefix => path.startsWith(prefix)) || null;
+}
+
+export function isSameRemotePrefix(from, to) {
+  const fromPrefix = getPrefix(from);
+  const toPrefix = getPrefix(to);
+  return fromPrefix && (fromPrefix !== toPrefix);
 }

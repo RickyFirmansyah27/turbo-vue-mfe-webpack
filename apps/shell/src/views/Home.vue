@@ -33,9 +33,10 @@
 </template>
 
 <script>
+import { Checkpoints } from 'commons/Utils';
 export default {
   name: 'Home',
-  components: {}, // awalnya kosong
+  components: {},
   data() {
     return {
       buttonComponent: null,
@@ -44,7 +45,7 @@ export default {
   },
   methods: {
     navigateToRemote() {
-      this.$router.push('/component');
+      this.$router.push(Checkpoints.transactions);
     },
     async loadCommonComponents() {
       try {

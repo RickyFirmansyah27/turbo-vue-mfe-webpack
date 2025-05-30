@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import { isRemotePath, Checkpoints } from 'commons/Utils';
+import { Checkpoints, isSameRemotePrefix} from 'commons/Utils';
 import RemoteAppWrapper from "../views/RemoteAppWrapper.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: Checkpoints.homepage,
     name: "Home",
     component: Home,
   },
@@ -30,7 +30,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (isRemotePath(from.path) && !isRemotePath(to.path)) {
+  if (isSameRemotePrefix(from.path, to.path)) {
     window.location.href = to.fullPath;
   } else {
     next();
