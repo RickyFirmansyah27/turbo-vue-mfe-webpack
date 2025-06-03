@@ -10,15 +10,15 @@
 
     <e-card
       title="Remote Card"
-      description="This is a card component loaded from the remote application."
+      description="Display a card with remote content"
     >
-    <e-select
-      v-model="payload.selectedCategory"
-      :options="categoryOptions"
-      label="Select Category"
-      wrapperClass="mb-4"
-      selectClass="border-gray-300"
-    />
+      <e-select
+        v-model="payload.selectedCategory"
+        :options="categoryOptions"
+        label="Select Category"
+        wrapperClass="mb-4"
+        selectClass="border-gray-300"
+      />
     </e-card>
   </div>
 </template>
@@ -36,11 +36,10 @@ export default {
   data() {
     return {
       payload: {
-        selectedCategory: null,
+        selectedCategory: '', 
       },
-      selectedCategory: '',
       categoryOptions: [
-        { id: 0, key: null, descriptions: 'Silahkan Pilih Category' },
+        { id: 0, key: '', descriptions: 'Silahkan Pilih Category' },
         { id: 1, key: 'tech', descriptions: 'Technology' },
         { id: 2, key: 'health', descriptions: 'Health' },
         { id: 3, key: 'edu', descriptions: 'Education' },
