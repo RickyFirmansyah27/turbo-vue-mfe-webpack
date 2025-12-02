@@ -6,14 +6,14 @@
       <div class="bg-white shadow rounded-lg p-6">
         <h3 class="text-lg font-semibold mb-2">Quick Actions</h3>
         <div class="space-y-2">
-          <router-link 
-            to="/profile" 
+          <router-link
+            :to="Checkpoints.remoteProfile"
             class="block text-primary-600 hover:text-primary-800"
           >
             View Profile
           </router-link>
-          <router-link 
-            to="/settings" 
+          <router-link
+            :to="Checkpoints.remoteSettings"
             class="block text-primary-600 hover:text-primary-800"
           >
             Settings
@@ -26,11 +26,17 @@
 
 <script>
 import FeatureComponent from '../components/Feature.vue';
+import { Checkpoints } from 'commons/Utils';
 
 export default {
   name: 'Dashboard',
   components: {
     FeatureComponent
+  },
+  data() {
+    return {
+      Checkpoints
+    };
   }
 }
 </script>

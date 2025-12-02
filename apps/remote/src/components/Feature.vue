@@ -32,7 +32,7 @@ export default {
     },
     async loadCommonComponents() {
       try {
-        const buttonModule = await import('common/Button');
+        const buttonModule = await import('commons/Button');
         this.buttonComponent = buttonModule.default;
       } catch (error) {
         console.error('Failed to load common components:', error);

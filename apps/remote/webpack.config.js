@@ -65,7 +65,7 @@ module.exports = {
         "./Asset": "./src/views/Asset.vue",
       },
       remotes: {
-        common: "common@http://localhost:8082/remoteEntry.js",
+        commons: "common@http://localhost:8082/remoteEntry.js",
       },
       shared: {
         vue: {
