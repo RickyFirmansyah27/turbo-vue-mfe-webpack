@@ -14,41 +14,22 @@ export default {
     },
   },
   mounted() {
-    const initialPath = this.$route.path;
-
-    const { onParentNavigation, unmount } = mount(this.$refs.remoteApp, {
-      initialPath,
+    // Mount the remote app, passing the DOM element, the shell's router,
+    // and any other required props.
+    const { unmount } = mount(this.$refs.remoteApp, {
       router: this.$router,
       reactQueryClient: this.reactQueryClient,
-      onParentNavigation: ({ pathname: nextPathname }) => {
-        const currentPathname = this.$route.path;
-        if (currentPathname !== nextPathname) {
-          this.$router.push(nextPathname).catch(err => {
-            if (err.name !== 'NavigationDuplicated') throw err;
-          });
-        }
-      },
     });
 
-    this.remoteUnmount = unmount; // simpan fungsi unmount
-
-    if (onParentNavigation) {
-      this.unlisten = this.$router.afterEach((to, from) => {
-        if (to.path !== from.path) {
-          onParentNavigation({ pathname: to.path });
-        }
-      });
-    }
+    // Store the unmount function to be called when the component is destroyed.
+    this.remoteUnmount = unmount;
   },
   beforeUnmount() {
-    if (this.unlisten) {
-      this.unlisten();
-      this.unlisten = null;
-    }
+    // Call the unmount function returned from the remote's mount function.
     if (this.remoteUnmount) {
       this.remoteUnmount();
       this.remoteUnmount = null;
     }
-  }
+  },
 };
 </script>

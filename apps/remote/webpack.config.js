@@ -57,6 +57,9 @@ module.exports = {
       exposes: {
         "./bootstrap": "./src/bootstrap.js",
         "./Feature": "./src/components/Feature.vue",
+        "./Dashboard": "./src/views/Dashboard.vue",
+        "./Profile": "./src/views/Profile.vue",
+        "./Settings": "./src/views/Settings.vue",
       },
       remotes: {
         common: "common@http://localhost:8082/remoteEntry.js",
