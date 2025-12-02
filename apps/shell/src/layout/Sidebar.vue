@@ -16,7 +16,23 @@
         exact
         aria-current="page"
       >
-        Dashboard
+        Home
+      </router-link>
+      <router-link 
+        :to="Checkpoints.remote"
+        class="block px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-primary-600 transition"
+        active-class="bg-primary-800"
+        aria-current="page"
+      >
+        Remote Dashboard
+      </router-link>
+      <router-link 
+        :to="Checkpoints.reports"
+        class="block px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-primary-600 transition"
+        active-class="bg-primary-800"
+        aria-current="page"
+      >
+        Reports (Remote)
       </router-link>
       <router-link 
         :to="Checkpoints.assets"
@@ -24,23 +40,7 @@
         active-class="bg-primary-800"
         aria-current="page"
       >
-        Assets
-      </router-link>
-       <router-link 
-        :to="Checkpoints.transactions"
-        class="block px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-primary-600 transition"
-        active-class="bg-primary-800"
-        aria-current="page"
-      >
-        Transactions
-      </router-link>
-       <router-link 
-        :to="Checkpoints.reports"
-        class="block px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-primary-600 transition"
-        active-class="bg-primary-800"
-        aria-current="page"
-      >
-        Reports
+        Assets (Remote)
       </router-link>
        <router-link 
         :to="Checkpoints.remoteProfile"
@@ -48,7 +48,7 @@
         active-class="bg-primary-800"
         aria-current="page"
       >
-        Managements
+        Profile (Remote)
       </router-link>
     </nav>
   </aside>

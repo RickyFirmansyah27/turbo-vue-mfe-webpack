@@ -13,8 +13,8 @@ const routes = [
     component: Home,
   },
   {
-    path: Checkpoints.transactions,
-    name: "Transactions",
+    path: Checkpoints.remote,
+    name: "RemoteDashboard",
     component: () => import("remote/Dashboard"),
   },
   {
@@ -23,9 +23,19 @@ const routes = [
     component: () => import("remote/Profile"),
   },
   {
-    path: '/remote/settings',
+    path: Checkpoints.remoteSettings,
     name: "RemoteSettings",
     component: () => import("remote/Settings"),
+  },
+  {
+    path: Checkpoints.reports,
+    name: "Reports",
+    component: () => import("remote/Report"),
+  },
+  {
+    path: Checkpoints.assets,
+    name: "Assets",
+    component: () => import("remote/Asset"),
   },
     {
     path: '/*',

@@ -1,20 +1,21 @@
+import { Checkpoints } from 'commons/Utils';
 import Dashboard from '../views/Dashboard.vue';
 import Profile from '../views/Profile.vue';
 import Settings from '../views/Settings.vue';
 
 const routes = [
   {
-    path: '/remote',
+    path: Checkpoints.remote,
     name: 'Dashboard',
     component: Dashboard
   },
   {
-    path: '/remote/profile',
+    path: Checkpoints.remoteProfile,
     name: 'Profile',
     component: Profile
   },
   {
-    path: '/remote/settings',
+    path: Checkpoints.remoteSettings,
     name: 'Settings',
     component: Settings
   }

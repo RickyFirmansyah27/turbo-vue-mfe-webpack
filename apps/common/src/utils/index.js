@@ -68,6 +68,7 @@ export const deepClone = (obj) => {
 
 export const menuPrefix = '/service';
 
+// remote app
 const remotePrefixes = [
   '/remote',
   '/reports',
@@ -77,13 +78,20 @@ const remotePrefixes = [
 ];
 
 export const Checkpoints = {
+  // Shell-specific routes
   login: '/',
   homepage: '/homepage',
-  reports: `${remotePrefixes[1]}/list`,
-  transactions: `${remotePrefixes[3]}/list`,
-  managements: `${remotePrefixes[4]}/list`,
-  assets: `${menuPrefix}/list`,
+  
+  // Base paths for remote features
+  remote: remotePrefixes[0],      // '/remote'
+  reports: remotePrefixes[1],     // '/reports'
+  assets: remotePrefixes[2],      // '/assets'
+  transactions: remotePrefixes[3],// '/transaction'
+  managements: remotePrefixes[4], // '/management'
+
+  // Specific sub-paths for the remote app
   remoteProfile: `${remotePrefixes[0]}/profile`,
+  remoteSettings: `${remotePrefixes[0]}/settings`,
 };
 
 export function getPrefix(path) {

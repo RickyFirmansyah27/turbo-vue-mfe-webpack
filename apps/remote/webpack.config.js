@@ -61,6 +61,8 @@ module.exports = {
         "./Dashboard": "./src/views/Dashboard.vue",
         "./Profile": "./src/views/Profile.vue",
         "./Settings": "./src/views/Settings.vue",
+        "./Report": "./src/views/Report.vue",
+        "./Asset": "./src/views/Asset.vue",
       },
       remotes: {
         common: "common@http://localhost:8082/remoteEntry.js",
