@@ -18,10 +18,11 @@
       >
         Home
       </router-link>
-      <router-link 
+      <router-link
         :to="Checkpoints.remote"
         class="block px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-primary-600 transition"
         active-class="bg-primary-800"
+        exact
         aria-current="page"
       >
         Remote Dashboard
