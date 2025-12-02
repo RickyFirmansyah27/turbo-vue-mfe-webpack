@@ -3,3 +3,4 @@ export { default as Card } from './Card.vue';
 export { default as CardView } from './CardView.vue';
 export { default as Button } from './Button.vue';
 export { default as Dropdown } from './Dropdown.vue';
+export { default as ToggleSwitch } from './ToggleSwitch.vue';
