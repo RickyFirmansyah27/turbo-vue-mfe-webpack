@@ -13,6 +13,7 @@ module.exports = {
     static: path.join(__dirname, "dist"),
     port: 8081,
     hot: true,
+    historyApiFallback: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
