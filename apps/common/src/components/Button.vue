@@ -1,11 +1,12 @@
 <template>
-  <button 
+  <button
     :class="[
-      'px-4 py-2 rounded-md text-white font-medium focus:outline-none transition-colors duration-200 ease-in-out',
+      'px-4 py-2 rounded-md text-white font-medium focus:outline-none transition-colors duration-200 ease-in-out flex items-center justify-center gap-2',
       typeClasses
     ]"
     @click="onClick"
   >
+    <slot name="icon"></slot>
     {{ label }}
   </button>
 </template>
