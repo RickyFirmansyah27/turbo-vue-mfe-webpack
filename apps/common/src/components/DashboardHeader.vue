@@ -4,19 +4,21 @@
       <h1 class="text-3xl font-bold text-gray-900 mb-1">Dashboard</h1>
       <p class="text-gray-600">Welcome back! Here's your overview.</p>
     </div>
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-      <Dropdown
-        :value="value"
-        :options="periodOptions"
-        label="Period"
-        wrapperClass="w-full sm:w-48"
-        selectClass="border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
-        @input="$emit('input', $event)"
-      />
+    <div class="flex items-end gap-4">
+      <div class="w-48">
+        <Dropdown
+          :value="value"
+          :options="periodOptions"
+          label="Period"
+          wrapperClass="w-full"
+          selectClass="border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg h-10"
+          @input="$emit('input', $event)"
+        />
+      </div>
       <Button
         label="Refresh Data"
         type="primary"
-        class="w-full sm:w-auto"
+        class="h-10 px-4"
         @click="$emit('refresh')"
       />
     </div>
