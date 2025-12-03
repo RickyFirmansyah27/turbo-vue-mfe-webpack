@@ -55,10 +55,22 @@ export default {
     periodOptions: {
       type: Array,
       default: () => [
-        { id: 1, key: 'today', descriptions: 'Today' },
-        { id: 2, key: 'this_week', descriptions: 'This Week' },
-        { id: 3, key: 'this_month', descriptions: 'This Month' },
-        { id: 4, key: 'this_year', descriptions: 'This Year' }
+        { id: 1, key: 'today', descriptions: '📅 Today', icon: '📅' },
+        { id: 2, key: 'yesterday', descriptions: '📆 Yesterday', icon: '📆' },
+        { id: 3, key: null, descriptions: '─────────────' },
+        { id: 4, key: 'last_7_days', descriptions: '📊 Last 7 Days', icon: '📊' },
+        { id: 5, key: 'last_30_days', descriptions: '📈 Last 30 Days', icon: '📈' },
+        { id: 6, key: null, descriptions: '─────────────' },
+        { id: 7, key: 'this_week', descriptions: '📅 This Week', icon: '📅' },
+        { id: 8, key: 'last_week', descriptions: '📆 Last Week', icon: '📆' },
+        { id: 9, key: null, descriptions: '─────────────' },
+        { id: 10, key: 'this_month', descriptions: '🗓️ This Month', icon: '🗓️' },
+        { id: 11, key: 'last_month', descriptions: '📅 Last Month', icon: '📅' },
+        { id: 12, key: 'last_3_months', descriptions: '📊 Last 3 Months', icon: '📊' },
+        { id: 13, key: null, descriptions: '─────────────' },
+        { id: 14, key: 'this_year', descriptions: '🎯 This Year', icon: '🎯' },
+        { id: 15, key: 'last_year', descriptions: '🏆 Last Year', icon: '🏆' },
+        { id: 16, key: 'all_time', descriptions: '🌟 All Time', icon: '🌟' }
       ]
     }
   },
