@@ -19,10 +19,14 @@
     </div>
 
     <!-- Feature Component -->
-    <div class="mb-6">
-      <Card title="Interactive Feature" description="Remote feature component with counter">
+    <div class="mb-8">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold text-gray-900">Interactive Feature</h3>
+          <p class="text-sm text-gray-600">Remote feature component with counter</p>
+        </div>
         <FeatureComponent />
-      </Card>
+      </div>
     </div>
 
     <QuickActions :checkpoints="Checkpoints" />

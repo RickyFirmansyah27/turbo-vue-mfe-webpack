@@ -1,16 +1,24 @@
 <template>
-  <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-    <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
-    <div class="flex items-center space-x-4">
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-6 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <div>
+      <h1 class="text-3xl font-bold text-gray-900 mb-1">Dashboard</h1>
+      <p class="text-gray-600">Welcome back! Here's your overview.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
       <Dropdown
         :value="value"
         :options="periodOptions"
         label="Period"
-        wrapperClass="w-40"
-        selectClass="border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+        wrapperClass="w-full sm:w-48"
+        selectClass="border-gray-300 focus:ring-blue-500 focus:border-blue-500 rounded-lg"
         @input="$emit('input', $event)"
       />
-      <Button label="Refresh" type="primary" @click="$emit('refresh')" />
+      <Button
+        label="Refresh Data"
+        type="primary"
+        class="w-full sm:w-auto"
+        @click="$emit('refresh')"
+      />
     </div>
   </div>
 </template>
