@@ -1,68 +1,21 @@
 <template>
   <div class="p-6">
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-      <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
-      <div class="flex items-center space-x-4">
-        <Dropdown
-          v-model="selectedPeriod"
-          :options="periodOptions"
-          label="Period"
-          wrapperClass="w-40"
-          selectClass="border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-        />
-        <Button label="Refresh" type="primary" @click="refreshData" />
-      </div>
-    </div>
+    <DashboardHeader
+      v-model="selectedPeriod"
+      :period-options="periodOptions"
+      @refresh="refreshData"
+    />
 
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-      <Card
-        v-for="stat in stats"
-        :key="stat.title"
-        :title="stat.title"
-        :description="stat.value"
-      >
-        <div class="mt-2 flex items-center">
-          <span :class="stat.trend === 'up' ? 'text-green-600' : 'text-red-600'">
-            {{ stat.change }}
-          </span>
-          <span class="ml-1 text-sm text-gray-500">vs previous period</span>
-        </div>
-      </Card>
-    </div>
+    <StatsCards :stats="stats" />
 
-    <!-- Dark Mode Toggle -->
-    <div class="mb-6 flex justify-end">
-      <ToggleSwitch
-        label="Dark Mode"
-        description="Toggle dark mode"
-        v-model="darkMode"
-        @change="toggleDarkMode"
-      />
-    </div>
+    <DarkModeToggle
+      v-model="darkMode"
+    />
 
     <!-- Chart and Recent Activities -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-      <!-- Chart -->
-      <Card title="Sales Overview" description="Monthly sales performance">
-        <div class="h-64 bg-gray-100 rounded flex items-center justify-center text-gray-500">
-          Chart Placeholder
-        </div>
-      </Card>
-
-      <!-- Recent Activities -->
-      <Card title="Recent Activity" description="Latest user activities">
-        <ul class="divide-y divide-gray-200">
-          <li v-for="activity in recentActivities" :key="activity.id" class="py-3 flex justify-between items-center">
-            <div>
-              <span class="font-medium text-gray-800">{{ activity.user }}</span>
-              <span class="text-gray-600 ml-1">{{ activity.action }}</span>
-            </div>
-            <span class="text-sm text-gray-500">{{ activity.time }}</span>
-          </li>
-        </ul>
-      </Card>
+      <ChartSection />
+      <RecentActivities :activities="recentActivities" />
     </div>
 
     <!-- Feature Component -->
@@ -72,39 +25,33 @@
       </Card>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="bg-white shadow rounded-lg p-6">
-      <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <router-link :to="Checkpoints.remoteProfile" class="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition">
-          <span class="text-primary-700 font-medium">View Profile</span>
-        </router-link>
-        <router-link :to="Checkpoints.remoteSettings" class="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition">
-          <span class="text-primary-700 font-medium">Settings</span>
-        </router-link>
-        <router-link :to="Checkpoints.reports" class="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition">
-          <span class="text-primary-700 font-medium">Reports</span>
-        </router-link>
-        <router-link :to="Checkpoints.assets" class="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition">
-          <span class="text-primary-700 font-medium">Assets</span>
-        </router-link>
-      </div>
-    </div>
+    <QuickActions :checkpoints="Checkpoints" />
   </div>
 </template>
 
 <script>
-import { Card, Button, Dropdown, ToggleSwitch } from 'commons/Components';
+import {
+  DashboardHeader,
+  StatsCards,
+  DarkModeToggle,
+  ChartSection,
+  RecentActivities,
+  QuickActions,
+  Card
+} from 'commons/Components';
 import FeatureComponent from '../components/Feature.vue';
 import { Checkpoints } from 'commons/Utils';
 
 export default {
   name: 'Dashboard',
   components: {
+    DashboardHeader,
+    StatsCards,
+    DarkModeToggle,
+    ChartSection,
+    RecentActivities,
+    QuickActions,
     Card,
-    Button,
-    Dropdown,
-    ToggleSwitch,
     FeatureComponent
   },
   data() {
@@ -137,11 +84,6 @@ export default {
     refreshData() {
       // Simulate data refresh
       alert('Data refreshed!');
-    },
-    toggleDarkMode(value) {
-      this.darkMode = value;
-      // Could apply dark mode theme here
-      console.log('Dark mode:', value);
     }
   }
 };
