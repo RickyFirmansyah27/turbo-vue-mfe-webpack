@@ -1,179 +1,138 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="text-4xl font-bold mb-2">Asset Management</h1>
-        <p class="text-blue-100 text-lg">Manage and track all company assets efficiently</p>
-      </div>
-    </div>
+    <PageHeader
+      title="Asset Management"
+      subtitle="Manage and track all company assets efficiently"
+      gradient="from-blue-600 to-indigo-700"
+      subtitle-color="text-blue-100"
+    />
 
     <div class="max-w-7xl mx-auto p-8">
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 text-sm font-medium">Total Assets</p>
-              <p class="text-3xl font-bold text-gray-900">{{ totalAssets }}</p>
-            </div>
-            <div class="p-3 bg-blue-100 rounded-full">
-              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 text-sm font-medium">Active Assets</p>
-              <p class="text-3xl font-bold text-gray-900">{{ activeAssets }}</p>
-            </div>
-            <div class="p-3 bg-green-100 rounded-full">
-              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 text-sm font-medium">Maintenance Due</p>
-              <p class="text-3xl font-bold text-gray-900">{{ maintenanceDue }}</p>
-            </div>
-            <div class="p-3 bg-yellow-100 rounded-full">
-              <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-gray-600 text-sm font-medium">Out of Service</p>
-              <p class="text-3xl font-bold text-gray-900">{{ outOfService }}</p>
-            </div>
-            <div class="p-3 bg-red-100 rounded-full">
-              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-              </svg>
-            </div>
-          </div>
-        </div>
+        <StatsCard
+          title="Total Assets"
+          :value="totalAssets"
+          color="blue"
+        >
+          <template #icon>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </template>
+        </StatsCard>
+
+        <StatsCard
+          title="Active Assets"
+          :value="activeAssets"
+          color="green"
+        >
+          <template #icon>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </template>
+        </StatsCard>
+
+        <StatsCard
+          title="Maintenance Due"
+          :value="maintenanceDue"
+          color="yellow"
+        >
+          <template #icon>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </template>
+        </StatsCard>
+
+        <StatsCard
+          title="Out of Service"
+          :value="outOfService"
+          color="red"
+        >
+          <template #icon>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </template>
+        </StatsCard>
       </div>
 
       <!-- Asset Categories -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <Card
-          title="🏗️ Equipment"
+        <ActionCard
+          title="Equipment"
           description="Manage company equipment and machinery assets."
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Items:</span>
-              <span class="font-semibold">{{ equipmentCount }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Active:</span>
-              <span class="font-semibold text-green-600">{{ equipmentActive }}</span>
-            </div>
-            <Button label="Manage Equipment" type="primary" class="w-full" @click="viewAssets('equipment')" />
-          </div>
-        </Card>
+          emoji="🏗️"
+          :stats="[
+            { label: 'Total Items', value: equipmentCount },
+            { label: 'Active', value: equipmentActive, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="Manage Equipment"
+          @action="viewAssets('equipment')"
+        />
 
-        <Card
-          title="🚗 Vehicles"
+        <ActionCard
+          title="Vehicles"
           description="Track and maintain company vehicle fleet."
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Fleet:</span>
-              <span class="font-semibold">{{ vehicleCount }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">In Service:</span>
-              <span class="font-semibold text-green-600">{{ vehicleActive }}</span>
-            </div>
-            <Button label="Manage Vehicles" type="primary" class="w-full" @click="viewAssets('vehicles')" />
-          </div>
-        </Card>
+          emoji="🚗"
+          :stats="[
+            { label: 'Total Fleet', value: vehicleCount },
+            { label: 'In Service', value: vehicleActive, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="Manage Vehicles"
+          @action="viewAssets('vehicles')"
+        />
 
-        <Card
-          title="💻 IT Assets"
+        <ActionCard
+          title="IT Assets"
           description="Monitor computers, servers, and IT equipment."
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Devices:</span>
-              <span class="font-semibold">{{ itCount }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Online:</span>
-              <span class="font-semibold text-green-600">{{ itActive }}</span>
-            </div>
-            <Button label="Manage IT Assets" type="primary" class="w-full" @click="viewAssets('it')" />
-          </div>
-        </Card>
+          emoji="💻"
+          :stats="[
+            { label: 'Total Devices', value: itCount },
+            { label: 'Online', value: itActive, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="Manage IT Assets"
+          @action="viewAssets('it')"
+        />
 
-        <Card
-          title="🏢 Real Estate"
+        <ActionCard
+          title="Real Estate"
           description="Manage property and facility assets."
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Properties:</span>
-              <span class="font-semibold">{{ propertyCount }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Occupied:</span>
-              <span class="font-semibold text-green-600">{{ propertyActive }}</span>
-            </div>
-            <Button label="Manage Properties" type="primary" class="w-full" @click="viewAssets('property')" />
-          </div>
-        </Card>
+          emoji="🏢"
+          :stats="[
+            { label: 'Properties', value: propertyCount },
+            { label: 'Occupied', value: propertyActive, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="Manage Properties"
+          @action="viewAssets('property')"
+        />
 
-        <Card
-          title="📚 Inventory"
+        <ActionCard
+          title="Inventory"
           description="Track office supplies and inventory items."
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Items:</span>
-              <span class="font-semibold">{{ inventoryCount }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">In Stock:</span>
-              <span class="font-semibold text-green-600">{{ inventoryActive }}</span>
-            </div>
-            <Button label="Manage Inventory" type="primary" class="w-full" @click="viewAssets('inventory')" />
-          </div>
-        </Card>
+          emoji="📚"
+          :stats="[
+            { label: 'Items', value: inventoryCount },
+            { label: 'In Stock', value: inventoryActive, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="Manage Inventory"
+          @action="viewAssets('inventory')"
+        />
 
-        <Card
-          title="🔧 Maintenance"
+        <ActionCard
+          title="Maintenance"
           description="Schedule and track maintenance activities."
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Scheduled:</span>
-              <span class="font-semibold">{{ maintenanceCount }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Overdue:</span>
-              <span class="font-semibold text-red-600">{{ maintenanceOverdue }}</span>
-            </div>
-            <Button label="View Schedule" type="primary" class="w-full" @click="viewAssets('maintenance')" />
-          </div>
-        </Card>
+          emoji="🔧"
+          :stats="[
+            { label: 'Scheduled', value: maintenanceCount },
+            { label: 'Overdue', value: maintenanceOverdue, class: 'font-semibold text-red-600' }
+          ]"
+          action-label="View Schedule"
+          @action="viewAssets('maintenance')"
+        />
       </div>
 
       <!-- Quick Actions -->
@@ -223,12 +182,14 @@
 </template>
 
 <script>
-import { Card, Button } from 'commons/Components';
+import { PageHeader, StatsCard, ActionCard, Button } from 'commons/Components';
 
 export default {
   name: 'Asset',
   components: {
-    Card,
+    PageHeader,
+    StatsCard,
+    ActionCard,
     Button
   },
   data() {

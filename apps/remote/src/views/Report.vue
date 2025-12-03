@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white p-8">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="text-4xl font-bold mb-2">Reports & Analytics</h1>
-        <p class="text-green-100 text-lg">Comprehensive insights and data visualization for better decision making</p>
-      </div>
-    </div>
+    <PageHeader
+      title="Reports & Analytics"
+      subtitle="Comprehensive insights and data visualization for better decision making"
+      gradient="from-green-600 to-teal-600"
+      subtitle-color="text-green-100"
+    />
 
     <div class="max-w-7xl mx-auto p-8">
       <!-- Filters and Controls -->
@@ -72,113 +72,77 @@
 
       <!-- Report Categories -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <Card
-          title="📊 Sales Reports"
+        <ActionCard
+          title="Sales Reports"
           description="Revenue, orders, and sales performance analytics"
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Reports:</span>
-              <span class="font-semibold">{{ salesReports.length }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Last Updated:</span>
-              <span class="font-semibold">{{ salesLastUpdate }}</span>
-            </div>
-            <Button label="View Sales Reports" type="primary" class="w-full" @click="viewReport('sales')" />
-          </div>
-        </Card>
+          emoji="📊"
+          :stats="[
+            { label: 'Total Reports', value: salesReports.length },
+            { label: 'Last Updated', value: salesLastUpdate }
+          ]"
+          action-label="View Sales Reports"
+          @action="viewReport('sales')"
+        />
 
-        <Card
-          title="📦 Inventory Reports"
+        <ActionCard
+          title="Inventory Reports"
           description="Stock levels, turnover rates, and inventory analysis"
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Reports:</span>
-              <span class="font-semibold">{{ inventoryReports.length }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Low Stock Items:</span>
-              <span class="font-semibold text-red-600">{{ lowStockItems }}</span>
-            </div>
-            <Button label="View Inventory Reports" type="primary" class="w-full" @click="viewReport('inventory')" />
-          </div>
-        </Card>
+          emoji="📦"
+          :stats="[
+            { label: 'Total Reports', value: inventoryReports.length },
+            { label: 'Low Stock Items', value: lowStockItems, class: 'font-semibold text-red-600' }
+          ]"
+          action-label="View Inventory Reports"
+          @action="viewReport('inventory')"
+        />
 
-        <Card
-          title="👥 Customer Reports"
+        <ActionCard
+          title="Customer Reports"
           description="Customer behavior, satisfaction, and retention metrics"
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Reports:</span>
-              <span class="font-semibold">{{ customerReports.length }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Active Customers:</span>
-              <span class="font-semibold text-green-600">{{ activeCustomers }}</span>
-            </div>
-            <Button label="View Customer Reports" type="primary" class="w-full" @click="viewReport('customer')" />
-          </div>
-        </Card>
+          emoji="👥"
+          :stats="[
+            { label: 'Total Reports', value: customerReports.length },
+            { label: 'Active Customers', value: activeCustomers, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="View Customer Reports"
+          @action="viewReport('customer')"
+        />
 
-        <Card
-          title="💰 Financial Reports"
+        <ActionCard
+          title="Financial Reports"
           description="Profit & loss, cash flow, and financial statements"
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Reports:</span>
-              <span class="font-semibold">{{ financialReports.length }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Monthly Revenue:</span>
-              <span class="font-semibold text-green-600">${{ monthlyRevenue }}</span>
-            </div>
-            <Button label="View Financial Reports" type="primary" class="w-full" @click="viewReport('financial')" />
-          </div>
-        </Card>
+          emoji="💰"
+          :stats="[
+            { label: 'Total Reports', value: financialReports.length },
+            { label: 'Monthly Revenue', value: '$' + monthlyRevenue, class: 'font-semibold text-green-600' }
+          ]"
+          action-label="View Financial Reports"
+          @action="viewReport('financial')"
+        />
 
-        <Card
-          title="⚡ Performance Reports"
+        <ActionCard
+          title="Performance Reports"
           description="System performance, uptime, and efficiency metrics"
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Total Reports:</span>
-              <span class="font-semibold">{{ performanceReports.length }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">System Uptime:</span>
-              <span class="font-semibold text-green-600">{{ systemUptime }}%</span>
-            </div>
-            <Button label="View Performance Reports" type="primary" class="w-full" @click="viewReport('performance')" />
-          </div>
-        </Card>
+          emoji="⚡"
+          :stats="[
+            { label: 'Total Reports', value: performanceReports.length },
+            { label: 'System Uptime', value: systemUptime + '%', class: 'font-semibold text-green-600' }
+          ]"
+          action-label="View Performance Reports"
+          @action="viewReport('performance')"
+        />
 
-        <Card
-          title="📈 Custom Reports"
+        <ActionCard
+          title="Custom Reports"
           description="Create and manage custom report templates"
-          class="hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        >
-          <div class="mt-4 space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Saved Templates:</span>
-              <span class="font-semibold">{{ customReports.length }}</span>
-            </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-600">Scheduled:</span>
-              <span class="font-semibold text-blue-600">{{ scheduledReports }}</span>
-            </div>
-            <Button label="Create Custom Report" type="primary" class="w-full" @click="createCustomReport" />
-          </div>
-        </Card>
+          emoji="📈"
+          :stats="[
+            { label: 'Saved Templates', value: customReports.length },
+            { label: 'Scheduled', value: scheduledReports, class: 'font-semibold text-blue-600' }
+          ]"
+          action-label="Create Custom Report"
+          @action="createCustomReport"
+        />
       </div>
 
       <!-- Recent Reports -->
@@ -225,12 +189,13 @@
 </template>
 
 <script>
-import { Card, Button } from 'commons/Components';
+import { PageHeader, ActionCard, Button } from 'commons/Components';
 
 export default {
   name: 'Report',
   components: {
-    Card,
+    PageHeader,
+    ActionCard,
     Button
   },
   data() {

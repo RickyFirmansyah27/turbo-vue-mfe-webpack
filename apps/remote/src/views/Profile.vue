@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-8">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="text-4xl font-bold mb-2">User Profile</h1>
-        <p class="text-purple-100 text-lg">Manage your personal information and preferences</p>
-      </div>
-    </div>
+    <PageHeader
+      title="User Profile"
+      subtitle="Manage your personal information and preferences"
+      gradient="from-purple-600 to-pink-600"
+      subtitle-color="text-purple-100"
+    />
 
     <div class="max-w-7xl mx-auto p-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -75,81 +75,63 @@
 
             <form @submit.prevent="saveProfile" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                  <input
-                    type="text"
-                    v-model="profile.firstName"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="Enter first name"
-                  >
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                  <input
-                    type="text"
-                    v-model="profile.lastName"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="Enter last name"
-                  >
-                </div>
+                <FormField
+                  label="First Name"
+                  v-model="profile.firstName"
+                  placeholder="Enter first name"
+                  required
+                />
+                <FormField
+                  label="Last Name"
+                  v-model="profile.lastName"
+                  placeholder="Enter last name"
+                  required
+                />
               </div>
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                <input
-                  type="email"
-                  v-model="profile.email"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter email address"
-                >
-              </div>
+              <FormField
+                label="Email Address"
+                type="email"
+                v-model="profile.email"
+                placeholder="Enter email address"
+                required
+              />
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                <input
-                  type="tel"
-                  v-model="profile.phone"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter phone number"
-                >
-              </div>
+              <FormField
+                label="Phone Number"
+                type="tel"
+                v-model="profile.phone"
+                placeholder="Enter phone number"
+              />
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
-                <input
-                  type="text"
-                  v-model="profile.role"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter job title"
-                >
-              </div>
+              <FormField
+                label="Job Title"
+                v-model="profile.role"
+                placeholder="Enter job title"
+              />
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Department</label>
-                <select
-                  v-model="profile.department"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                >
-                  <option value="">Select Department</option>
-                  <option value="engineering">Engineering</option>
-                  <option value="marketing">Marketing</option>
-                  <option value="sales">Sales</option>
-                  <option value="hr">Human Resources</option>
-                  <option value="finance">Finance</option>
-                  <option value="operations">Operations</option>
-                </select>
-              </div>
+              <FormField
+                label="Department"
+                type="select"
+                v-model="profile.department"
+                :options="[
+                  { value: '', label: 'Select Department' },
+                  { value: 'engineering', label: 'Engineering' },
+                  { value: 'marketing', label: 'Marketing' },
+                  { value: 'sales', label: 'Sales' },
+                  { value: 'hr', label: 'Human Resources' },
+                  { value: 'finance', label: 'Finance' },
+                  { value: 'operations', label: 'Operations' }
+                ]"
+              />
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Bio</label>
-                <textarea
-                  v-model="profile.bio"
-                  rows="4"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Tell us about yourself..."
-                ></textarea>
-              </div>
+              <FormField
+                label="Bio"
+                type="textarea"
+                v-model="profile.bio"
+                placeholder="Tell us about yourself..."
+                :rows="4"
+              />
 
               <div class="flex justify-end space-x-4">
                 <Button
@@ -208,11 +190,13 @@
 </template>
 
 <script>
-import { Button } from 'commons/Components';
+import { PageHeader, FormField, Button } from 'commons/Components';
 
 export default {
   name: 'Profile',
   components: {
+    PageHeader,
+    FormField,
     Button
   },
   data() {

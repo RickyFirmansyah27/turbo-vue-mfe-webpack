@@ -1,35 +1,22 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="text-4xl font-bold mb-2">Settings</h1>
-        <p class="text-indigo-100 text-lg">Customize your experience and manage your account preferences</p>
-      </div>
-    </div>
+    <PageHeader
+      title="Settings"
+      subtitle="Customize your experience and manage your account preferences"
+      gradient="from-indigo-600 to-purple-600"
+      subtitle-color="text-indigo-100"
+    />
 
     <div class="max-w-7xl mx-auto p-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Settings Navigation -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-xl shadow-lg p-6">
-            <nav class="space-y-2">
-              <button
-                v-for="section in settingsSections"
-                :key="section.id"
-                @click="activeSection = section.id"
-                :class="[
-                  'w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center space-x-3',
-                  activeSection === section.id
-                    ? 'bg-indigo-50 text-indigo-700 border-l-4 border-indigo-500'
-                    : 'text-gray-700 hover:bg-gray-50'
-                ]"
-              >
-                <component :is="section.icon" class="w-5 h-5" />
-                <span class="font-medium">{{ section.name }}</span>
-              </button>
-            </nav>
-          </div>
+          <SettingsSidebar
+            :sections="settingsSections"
+            :active-section="activeSection"
+            @section-change="activeSection = $event"
+          />
         </div>
 
         <!-- Settings Content -->
@@ -38,36 +25,30 @@
           <div v-if="activeSection === 'account'" class="bg-white rounded-xl shadow-lg p-6">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Account Settings</h2>
             <div class="space-y-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                <input
-                  type="email"
-                  v-model="settings.account.email"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                >
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Display Name</label>
-                <input
-                  type="text"
-                  v-model="settings.account.displayName"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                >
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Timezone</label>
-                <select
-                  v-model="settings.account.timezone"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                >
-                  <option value="UTC-8">Pacific Time (UTC-8)</option>
-                  <option value="UTC-5">Eastern Time (UTC-5)</option>
-                  <option value="UTC+0">GMT (UTC+0)</option>
-                  <option value="UTC+1">Central European Time (UTC+1)</option>
-                  <option value="UTC+7">Indochina Time (UTC+7)</option>
-                  <option value="UTC+9">Japan Standard Time (UTC+9)</option>
-                </select>
-              </div>
+              <FormField
+                label="Email Address"
+                type="email"
+                v-model="settings.account.email"
+                required
+              />
+              <FormField
+                label="Display Name"
+                v-model="settings.account.displayName"
+                required
+              />
+              <FormField
+                label="Timezone"
+                type="select"
+                v-model="settings.account.timezone"
+                :options="[
+                  { value: 'UTC-8', label: 'Pacific Time (UTC-8)' },
+                  { value: 'UTC-5', label: 'Eastern Time (UTC-5)' },
+                  { value: 'UTC+0', label: 'GMT (UTC+0)' },
+                  { value: 'UTC+1', label: 'Central European Time (UTC+1)' },
+                  { value: 'UTC+7', label: 'Indochina Time (UTC+7)' },
+                  { value: 'UTC+9', label: 'Japan Standard Time (UTC+9)' }
+                ]"
+              />
               <Button
                 label="Save Account Settings"
                 type="primary"
@@ -144,20 +125,19 @@
                 </div>
               </div>
 
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Language</label>
-                <select
-                  v-model="settings.appearance.language"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                >
-                  <option value="en">English</option>
-                  <option value="es">Español</option>
-                  <option value="fr">Français</option>
-                  <option value="de">Deutsch</option>
-                  <option value="id">Bahasa Indonesia</option>
-                  <option value="zh">中文</option>
-                </select>
-              </div>
+              <FormField
+                label="Language"
+                type="select"
+                v-model="settings.appearance.language"
+                :options="[
+                  { value: 'en', label: 'English' },
+                  { value: 'es', label: 'Español' },
+                  { value: 'fr', label: 'Français' },
+                  { value: 'de', label: 'Deutsch' },
+                  { value: 'id', label: 'Bahasa Indonesia' },
+                  { value: 'zh', label: '中文' }
+                ]"
+              />
 
               <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                 <div>
@@ -250,11 +230,14 @@
 </template>
 
 <script>
-import { ToggleSwitch, Button } from 'commons/Components';
+import { PageHeader, SettingsSidebar, FormField, ToggleSwitch, Button } from 'commons/Components';
 
 export default {
   name: 'Settings',
   components: {
+    PageHeader,
+    SettingsSidebar,
+    FormField,
     ToggleSwitch,
     Button
   },
