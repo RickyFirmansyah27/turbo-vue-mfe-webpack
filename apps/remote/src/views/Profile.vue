@@ -1,14 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <PageHeader
-      title="User Profile"
-      subtitle="Manage your personal information and preferences"
-      gradient="from-purple-600 to-pink-600"
-      subtitle-color="text-purple-100"
-    />
+   <div class="p-6">
+     <!-- Header -->
+     <PageHeader
+       title="User Profile"
+       subtitle="Manage your personal information and preferences"
+       gradient="from-purple-600 to-pink-600"
+       subtitle-color="text-purple-100"
+     />
 
-    <div class="max-w-7xl mx-auto p-8">
+     <div class="mb-6"></div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Profile Sidebar -->
         <div class="lg:col-span-1">
@@ -181,7 +181,6 @@
                   @click="enable2FA"
                 />
               </div>
-            </div>
           </div>
         </div>
       </div>

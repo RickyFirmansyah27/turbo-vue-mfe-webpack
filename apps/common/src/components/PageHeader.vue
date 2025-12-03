@@ -1,5 +1,5 @@
 <template>
-  <div :class="headerClass" class="text-white p-8">
+  <div :class="headerClass" class="text-white p-8 rounded-2xl">
     <div class="max-w-7xl mx-auto">
       <h1 class="text-4xl font-bold mb-2">{{ title }}</h1>
       <p :class="subtitleClass" class="text-lg">{{ subtitle }}</p>

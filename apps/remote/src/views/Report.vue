@@ -1,14 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <PageHeader
-      title="Reports & Analytics"
-      subtitle="Comprehensive insights and data visualization for better decision making"
-      gradient="from-green-600 to-teal-600"
-      subtitle-color="text-green-100"
-    />
+   <div class="p-6">
+     <!-- Header -->
+     <PageHeader
+       title="Reports & Analytics"
+       subtitle="Comprehensive insights and data visualization for better decision making"
+       gradient="from-green-600 to-teal-600"
+       subtitle-color="text-green-100"
+     />
 
-    <div class="max-w-7xl mx-auto p-8">
+     <div class="mb-6"></div>
       <!-- Filters and Controls -->
       <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -181,7 +181,6 @@
                 @click="downloadReport(report.id)"
               />
             </div>
-          </div>
         </div>
       </div>
     </div>

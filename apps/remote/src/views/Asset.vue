@@ -1,14 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <PageHeader
-      title="Asset Management"
-      subtitle="Manage and track all company assets efficiently"
-      gradient="from-blue-600 to-indigo-700"
-      subtitle-color="text-blue-100"
-    />
+   <div class="p-6">
+     <!-- Header -->
+     <PageHeader
+       title="Asset Management"
+       subtitle="Manage and track all company assets efficiently"
+       gradient="from-blue-600 to-indigo-700"
+       subtitle-color="text-blue-100"
+     />
 
-    <div class="max-w-7xl mx-auto p-8">
+     <div class="mb-6"></div>
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <StatsCard
@@ -176,7 +176,6 @@
             </template>
           </Button>
         </div>
-      </div>
     </div>
   </div>
 </template>
