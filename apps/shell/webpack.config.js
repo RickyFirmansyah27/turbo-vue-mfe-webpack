@@ -60,6 +60,7 @@ module.exports = {
       remotes: {
         remote: "remote@http://localhost:8081/remoteEntry.js",
         commons: "common@http://localhost:8082/remoteEntry.js",
+        management: "management@http://localhost:8083/remoteEntry.js",
       },
       shared: {
         vue: {

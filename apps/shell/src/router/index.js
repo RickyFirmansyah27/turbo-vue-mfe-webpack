@@ -37,6 +37,26 @@ const routes = [
     name: "Assets",
     component: () => import("remote/Asset"),
   },
+  {
+    path: Checkpoints.managementDashboard,
+    name: "ManagementDashboard",
+    component: () => import("management/Dashboard"),
+  },
+  {
+    path: Checkpoints.managementEmployees,
+    name: "ManagementEmployees",
+    component: () => import("management/Employees"),
+  },
+  {
+    path: Checkpoints.managementDepartments,
+    name: "ManagementDepartments",
+    component: () => import("management/Departments"),
+  },
+  {
+    path: Checkpoints.managementReports,
+    name: "ManagementReports",
+    component: () => import("management/Reports"),
+  },
     {
     path: '/*',
     name: "NotFound",

@@ -92,6 +92,12 @@ export const Checkpoints = {
   // Specific sub-paths for the remote app
   remoteProfile: `${remotePrefixes[0]}/profile`,
   remoteSettings: `${remotePrefixes[0]}/settings`,
+
+  // Specific sub-paths for the management app
+  managementDashboard: `${remotePrefixes[4]}/dashboard`,
+  managementEmployees: `${remotePrefixes[4]}/employees`,
+  managementDepartments: `${remotePrefixes[4]}/departments`,
+  managementReports: `${remotePrefixes[4]}/reports`,
 };
 
 export function getPrefix(path) {
