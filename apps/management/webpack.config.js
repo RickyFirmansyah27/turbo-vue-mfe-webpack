@@ -1,73 +1,80 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
-const { ModuleFederationPlugin } = require('webpack').container;
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader");
+const { ModuleFederationPlugin } = require("webpack").container;
+const path = require("path");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.[contenthash].js',
-    publicPath: '/management/',
-    clean: true,
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "http://localhost:8083/",
+  },
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    port: 8083,
+    hot: true,
+    historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
+  resolve: {
+    extensions: [".js", ".vue", ".json"],
+    alias: {
+      vue$: "vue/dist/vue.esm.js",
+    },
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: "vue-loader",
       },
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ]
-      }
-    ]
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("tailwindcss"), require("autoprefixer")],
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: "./public/index.html",
     }),
     new ModuleFederationPlugin({
-      name: 'management',
-      filename: 'remoteEntry.js',
-      exposes: {
+      name: "management",
+      filename: "remoteEntry.js",
+       exposes: {
         './Dashboard': './src/views/Dashboard.vue',
         './Departments': './src/views/Departments.vue',
         './Employees': './src/views/Employees.vue',
         './Reports': './src/views/Reports.vue',
       },
+      remotes: {
+        commons: "common@http://localhost:8082/remoteEntry.js",
+      },
       shared: {
         vue: {
           singleton: true,
-          requiredVersion: '^2.6.11',
+          eager: false,
+          requiredVersion: "^2.6.14",
         },
-        'vue-router': {
+        "vue-router": {
           singleton: true,
-          requiredVersion: '^3.2.0',
-        },
-        vuex: {
-          singleton: true,
-          requiredVersion: '^3.4.0',
+          requiredVersion: "^3.5.3",
         },
       },
     }),
   ],
-  resolve: {
-    alias: {
-      'commons': path.resolve(__dirname, '../common/src')
-    },
-    extensions: ['.js', '.vue', '.json']
-  },
-  devServer: {
-    port: 8083,
-    hot: true,
-    static: {
-      directory: path.join(__dirname, 'public'),
-    },
-  }
 };

@@ -5,20 +5,31 @@ import Settings from '../views/Settings.vue';
 
 const routes = [
   {
-    path: Checkpoints.remote,
+    path: Checkpoints.assets,
     name: 'Dashboard',
     component: Dashboard
   },
   {
-    path: Checkpoints.remoteProfile,
+    path: Checkpoints.assetsProfile,
     name: 'Profile',
     component: Profile
   },
   {
-    path: Checkpoints.remoteSettings,
+    path: Checkpoints.assetsSetting,
     name: 'Settings',
     component: Settings
-  }
+  },
+  {
+    path: Checkpoints.assetsReport,
+    name: 'Report',
+    component: () => import('../views/Report.vue')
+  },
+    {
+    path: Checkpoints.assetsList,
+    name: 'Report',
+    component: () => import('../views/Asset.vue')
+  },
+
 ];
 
 export default routes;

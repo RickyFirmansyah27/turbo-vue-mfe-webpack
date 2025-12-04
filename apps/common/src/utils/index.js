@@ -70,9 +70,8 @@ export const menuPrefix = '/service';
 
 // remote app
 const remotePrefixes = [
-  '/remote',
-  '/reports',
   '/assets',
+  '/reports',
   '/transaction',
   '/management',
 ];
@@ -83,21 +82,23 @@ export const Checkpoints = {
   homepage: '/homepage',
   
   // Base paths for remote features
-  remote: remotePrefixes[0],      // '/remote'
+  assets: remotePrefixes[0],      // '/remote'
   reports: remotePrefixes[1],     // '/reports'
-  assets: remotePrefixes[2],      // '/assets'
-  transactions: remotePrefixes[3],// '/transaction'
-  managements: remotePrefixes[4], // '/management'
+  transactions: remotePrefixes[2],// '/transaction'
+  managements: remotePrefixes[3], // '/management'
 
   // Specific sub-paths for the remote app
-  remoteProfile: `${remotePrefixes[0]}/profile`,
-  remoteSettings: `${remotePrefixes[0]}/settings`,
+  assetsProfile: `${remotePrefixes[0]}/profile`,
+  assetsSetting: `${remotePrefixes[0]}/settings`,
+  assetsReport: `${remotePrefixes[0]}/reports`,
+  assetsList: `${remotePrefixes[0]}/assets`,
+
 
   // Specific sub-paths for the management app
-  managementDashboard: `${remotePrefixes[4]}/dashboard`,
-  managementEmployees: `${remotePrefixes[4]}/employees`,
-  managementDepartments: `${remotePrefixes[4]}/departments`,
-  managementReports: `${remotePrefixes[4]}/reports`,
+  managementDashboard: `${remotePrefixes[3]}/dashboard`,
+  managementEmployees: `${remotePrefixes[3]}/employees`,
+  managementDepartments: `${remotePrefixes[3]}/departments`,
+  managementReports: `${remotePrefixes[3]}/reports`,
 };
 
 export function getPrefix(path) {
