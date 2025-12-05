@@ -9,7 +9,3 @@ export default {
   name: 'App'
 }
 </script>
-
-<style>
-@import './assets/tailwind.css';
-</style>
