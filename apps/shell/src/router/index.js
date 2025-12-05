@@ -6,6 +6,12 @@ import { NotFound } from 'commons/Components';
 
 Vue.use(VueRouter);
 
+// Debug: Log Checkpoints object to verify all paths are defined
+console.log('DEBUG: Checkpoints object:', Checkpoints);
+console.log('DEBUG: Checkpoints.homepage:', Checkpoints.homepage);
+console.log('DEBUG: Checkpoints.assets:', Checkpoints.assets);
+console.log('DEBUG: Checkpoints.managementDashboard:', Checkpoints.managementDashboard);
+
 const routes = [
   {
     path: Checkpoints.homepage,
@@ -38,7 +44,7 @@ const routes = [
     component: () => import("remote/Asset"),
   },
   {
-    path: Checkpoints.managementDashboard,
+    path: Checkpoints.managements,
     name: "ManagementDashboard",
     component: () => import("management/Dashboard"),
   },
@@ -63,6 +69,15 @@ const routes = [
     component: NotFound,
   },
 ];
+
+// Debug: Log each route to check for missing paths
+console.log('DEBUG: Routes before router creation:');
+routes.forEach((route, index) => {
+  console.log(`Route ${index}:`, route);
+  if (!route.path) {
+    console.error(`ERROR: Route at index ${index} is missing path property!`, route);
+  }
+});
 
 const router = new VueRouter({
   mode: "history",

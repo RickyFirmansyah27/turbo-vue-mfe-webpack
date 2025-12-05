@@ -6,7 +6,7 @@ import Reports from '../views/Reports.vue';
 
 const routes = [
   {
-    path: Checkpoints.management,
+    path: Checkpoints.managements,
     name: 'Dashboard',
     component: Dashboard
   },

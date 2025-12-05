@@ -60,7 +60,7 @@ export default {
         },
         {
           label: 'Assets',
-          to: Checkpoints.remote,
+          to: Checkpoints.assets,
           children: [
             {
               label: 'Dashboard',
@@ -86,7 +86,7 @@ export default {
           children: [
             {
               label: 'Dashboard',
-              to: Checkpoints.managementDashboard,
+              to: Checkpoints.managements,
             },
             {
               label: 'Employees',

@@ -73,7 +73,7 @@ const remotePrefixes = [
   '/assets',
   '/reports',
   '/transaction',
-  '/management',
+  '/managements',
 ];
 
 export const Checkpoints = {
@@ -91,11 +91,10 @@ export const Checkpoints = {
   assetsProfile: `${remotePrefixes[0]}/profile`,
   assetsSetting: `${remotePrefixes[0]}/settings`,
   assetsReport: `${remotePrefixes[0]}/reports`,
-  assetsList: `${remotePrefixes[0]}/assets`,
+  assetsList: `${remotePrefixes[0]}/list`,
 
 
   // Specific sub-paths for the management app
-  managementDashboard: `${remotePrefixes[3]}/dashboard`,
   managementEmployees: `${remotePrefixes[3]}/employees`,
   managementDepartments: `${remotePrefixes[3]}/departments`,
   managementReports: `${remotePrefixes[3]}/reports`,

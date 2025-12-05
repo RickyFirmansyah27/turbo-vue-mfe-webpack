@@ -14,7 +14,7 @@ export const mount = (element, { router: shellRouter } = {}) => {
     ? shellRouter
     : new VueRouter({
         mode: 'history',
-        routes: [...routes, { path: '/', redirect: '/remote' }]
+        routes: [...routes, { path: '/', redirect: '/assets' }]
       });
 
   const appInstance = new Vue({
