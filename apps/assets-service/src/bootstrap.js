@@ -34,7 +34,7 @@ export const mount = (element, { router: shellRouter } = {}) => {
 
 // If running standalone, find the root element and mount the app
 if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.querySelector('#remote');
+  const devRoot = document.querySelector('#assets-service');
   if (devRoot) {
     mount(devRoot);
   }
